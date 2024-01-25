@@ -35,6 +35,7 @@ body {
   from {
     -webkit-transform: rotate(0deg) translateX(10px) rotate(0deg);
   }
+
   to {
     -webkit-transform: rotate(360deg) translateX(10px) rotate(-360deg);
   }
@@ -44,6 +45,7 @@ body {
   from {
     -moz-transform: rotate(0deg) translateX(10px) rotate(0deg);
   }
+
   to {
     -moz-transform: rotate(360deg) translateX(10px) rotate(-360deg);
   }
@@ -53,6 +55,7 @@ body {
   from {
     -o-transform: rotate(0deg) translateX(10px) rotate(0deg);
   }
+
   to {
     -o-transform: rotate(360deg) translateX(10px) rotate(-360deg);
   }
@@ -62,6 +65,7 @@ body {
   from {
     transform: rotate(0deg) translateX(10px) rotate(0deg);
   }
+
   to {
     transform: rotate(360deg) translateX(10px) rotate(-360deg);
   }
@@ -71,42 +75,53 @@ body {
   0% {
     opacity: 0.2;
   }
+
   50% {
     opacity: 1;
   }
+
   100% {
     opacity: 0.2;
   }
 }
+
 @-moz-keyframes opacity {
   0% {
     opacity: 0.2;
   }
+
   50% {
     opacity: 1;
   }
+
   100% {
     opacity: 0.2;
   }
 }
+
 @-o-keyframes opacity {
   0% {
     opacity: 0.2;
   }
+
   50% {
     opacity: 1;
   }
+
   100% {
     opacity: 0.2;
   }
 }
+
 @keyframes opacity {
   0% {
     opacity: 0.2;
   }
+
   50% {
     opacity: 1;
   }
+
   100% {
     opacity: 0.2;
   }
@@ -124,6 +139,7 @@ body {
   font-family: var(--main-font);
   color: var(--color-text);
   font-size: 16px;
+
   &.body--with-footer {
     .main {
       align-items: normal;
@@ -144,7 +160,8 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   /* display: none; <- Crashes Chrome on hover */
   -webkit-appearance: none;
-  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+  margin: 0;
+  /* <-- Apparently some margin are still there even though it's hidden */
 }
 
 button {
@@ -152,7 +169,8 @@ button {
 }
 
 input[type="number"] {
-  -moz-appearance: textfield; /* Firefox */
+  -moz-appearance: textfield;
+  /* Firefox */
 }
 
 input,
@@ -187,16 +205,19 @@ h5 {
   margin-right: auto;
   padding-left: 16px;
   padding-right: 16px;
+
   @include breakpoint(phone) {
     max-width: 650px;
     margin-left: auto;
     margin-right: auto;
   }
+
   @include breakpoint(tablet-lg) {
     max-width: 980px;
     margin-left: auto;
     margin-right: auto;
   }
+
   @include breakpoint(desktop-lg) {
     max-width: 1280px;
     margin-left: auto;
@@ -207,6 +228,7 @@ h5 {
 .main-page {
   background-color: var(--background);
   padding-top: 65px;
+
   @include breakpoint(phone) {
     padding-top: 100px;
   }
@@ -232,6 +254,7 @@ h5 {
   width: 25px;
   height: 25px;
   margin-left: auto;
+
   &:before,
   &:after,
   span {
@@ -248,19 +271,24 @@ h5 {
     transition: none 0.3s ease 0.3s;
     transition-property: transform, top, bottom, right, opacity;
   }
+
   &:before {
     transform: translateY(-6px);
   }
+
   &:after {
     transform: translateY(6px);
   }
+
   &.is-active {
     &:before {
       transform: rotate(45deg);
     }
+
     &:after {
       transform: rotate(-45deg);
     }
+
     span {
       opacity: 0;
     }
@@ -270,6 +298,7 @@ h5 {
 .btn {
   color: var(--text-primary);
   cursor: pointer;
+
   &.btn--rounded {
     font-size: 12px;
     background: var(--background);
@@ -278,13 +307,16 @@ h5 {
     padding: 11px 20px;
     font-weight: 500;
     text-transform: uppercase;
+
     @include breakpoint(phone) {
       font-size: 13px;
       padding: 15px 25px;
     }
+
     &.btn--border {
       border: 1px solid #d8d8d8;
     }
+
     &.btn--yellow {
       background-color: var(--color-orange);
     }
@@ -295,15 +327,18 @@ h5 {
   display: flex;
   font-size: 14px;
   align-items: center;
+
   @include breakpoint(phone) {
     font-size: 16px;
   }
+
   svg {
     width: 38px;
     height: 28px;
     fill: currentColor;
     object-fit: contain;
     margin-right: 15px;
+
     @include breakpoint(phone) {
       width: 45px;
       height: 35px;
@@ -313,16 +348,21 @@ h5 {
 
 .breadcrumb {
   padding: 20px 0 20px 0;
+
   @include breakpoint(phone) {
     padding: 29px 0 35px 0;
   }
+
   .breadcrumb-list {
     display: flex;
+
     li {
       font-size: 13px;
       color: #b2b2b2;
+
       &:not(:first-child) {
         margin-left: 10px;
+
         &:before {
           content: "/ ";
           margin-right: 3px;
@@ -342,48 +382,61 @@ h5 {
   color: var(--text-primary);
   box-shadow: none;
   transition: all 0.3s ease;
+
   @include breakpoint(phone) {
     height: 100px;
   }
+
   .btn-hamburger {
+
     &:before,
     &:after,
     span {
       background-color: var(--background);
     }
   }
+
   .container {
     display: flex;
     height: 100%;
     align-items: center;
   }
+
   .site-logo {
     color: var(--background);
   }
+
   .site-header__btn-avatar {
     display: none;
+
     @include breakpoint(tablet-lg) {
       display: block;
     }
   }
+
   .site-header__btn-menu {
     @include breakpoint(tablet-lg) {
       display: none;
     }
   }
+
   .site-header__actions {
     margin-left: auto;
     display: flex;
     align-items: center;
+
     @include breakpoint(tablet-lg) {
       margin-left: 0;
     }
+
     button {
       margin-left: 15px;
+
       @include breakpoint(tablet-lg) {
         margin-left: 25px;
       }
     }
+
     i {
       color: var(--background);
       z-index: 10;
@@ -392,6 +445,7 @@ h5 {
       font-size: 18px;
     }
   }
+
   .site-nav {
     top: 0;
     right: -250px;
@@ -404,6 +458,7 @@ h5 {
     background-color: var(--background);
     transition: all 0.3s ease;
     border-left: 1px solid #e5e5e5;
+
     @include breakpoint(tablet-lg) {
       position: relative;
       height: auto;
@@ -412,6 +467,7 @@ h5 {
       border: none;
       background-color: transparent;
     }
+
     .site-nav__btn {
       padding: 13px 18px;
       width: 100%;
@@ -419,13 +475,16 @@ h5 {
       font-weight: 500;
       color: var(--text-primary);
       text-align: left;
+
       @include breakpoint(tablet-lg) {
         display: none;
       }
     }
+
     &.site-nav--open {
       right: 0;
     }
+
     a {
       font-size: 15px;
       font-weight: 500;
@@ -434,6 +493,7 @@ h5 {
       display: block;
       text-align: left;
       padding: 15px 18px;
+
       @include breakpoint(tablet-lg) {
         width: auto;
         padding: 0;
@@ -444,41 +504,53 @@ h5 {
       }
     }
   }
+
   &.site-header--fixed {
     border-bottom: 1px solid var(--border-primary);
     background-color: var(--background);
+
     .btn-hamburger {
+
       &:before,
       &:after,
       span {
         background-color: var(--text-primary);
       }
     }
+
     a,
     i {
       color: var(--text-primary);
     }
+
     button {
       color: var(--text-primary);
+
       i {
         color: var(--text-primary);
       }
     }
+
     .site-logo {
       color: var(--text-primary);
     }
   }
+
   .search-form-wrapper {
     &.search-form--active {
+
       a,
       i {
         color: var(--text-primary);
       }
+
       .search-form {
         top: 0;
+
         @include breakpoint(tablet-lg) {
           top: auto;
         }
+
         input {
           @include breakpoint(tablet-lg) {
             border: 1px solid #ababab;
@@ -492,6 +564,7 @@ h5 {
 .search-form-wrapper {
   position: relative;
   z-index: 5000;
+
   .search-form {
     position: fixed;
     z-index: 100;
@@ -501,20 +574,24 @@ h5 {
     right: 0;
     transition: all 0.3s ease;
     background-color: var(--background);
+
     @include breakpoint(tablet-lg) {
       position: static;
       height: auto;
       top: auto;
     }
+
     .icon-cancel {
       top: 18px;
       right: 22px;
       cursor: pointer;
       position: absolute;
+
       @include breakpoint(tablet-lg) {
         display: none;
       }
     }
+
     input {
       padding: 0;
       overflow: hidden;
@@ -528,9 +605,11 @@ h5 {
       border-bottom: 1px solid black;
       transition: all 0.3s ease;
       background-color: transparent;
+
       @include inputPlaceholder {
         color: #808080;
       }
+
       @include breakpoint(tablet-lg) {
         width: 0;
         top: 50%;
@@ -543,12 +622,15 @@ h5 {
       }
     }
   }
+
   &.search-form--active {
+
     a,
     i {
       color: var(--text-primary) !important;
       z-index: 10;
     }
+
     input {
       color: var(--text-primary);
       padding: 0 8px;
@@ -556,6 +638,7 @@ h5 {
       text-align: center;
       padding-right: 40px;
       background-color: var(--background);
+
       @include breakpoint(tablet-lg) {
         width: 300px;
         padding: 0 19px;
@@ -567,6 +650,7 @@ h5 {
 
 .page-intro {
   position: relative;
+
   .swiper-button-prev,
   .swiper-button-next {
     bottom: 20px;
@@ -585,6 +669,7 @@ h5 {
     position: absolute;
     display: none;
     background-color: rgba(255, 255, 255, 0.12);
+
     @include breakpoint(phone) {
       width: 52px;
       height: 52px;
@@ -592,6 +677,7 @@ h5 {
       font-size: 17px;
       display: flex;
     }
+
     @include breakpoint(tablet-lg) {
       width: 72px;
       height: 72px;
@@ -599,29 +685,36 @@ h5 {
       font-size: 21px;
       display: flex;
     }
+
     &:before {
       color: var(--background);
       content: "\e80b";
       font-family: "icons";
     }
+
     &:hover {
       background: var(--background);
+
       &:before {
         color: #000;
       }
     }
   }
+
   .swiper-button-next {
     right: 20px;
+
     @include breakpoint(phone) {
       right: 7%;
     }
+
     &:before {
       content: "\e811";
     }
   }
-  .swiper-pagination-progressbar {
-  }
+
+  .swiper-pagination-progressbar {}
+
   .shop-data {
     bottom: 0;
     left: 0;
@@ -630,9 +723,11 @@ h5 {
     display: none;
     position: absolute;
     padding: 36px 30px 30px 30px;
+
     @include breakpoint(phone) {
       display: block;
     }
+
     &:before {
       background: var(--background);
       content: "";
@@ -645,23 +740,28 @@ h5 {
       border-radius: 0 70px 0 0;
       position: absolute;
     }
+
     .shop-data__items {
       width: 100%;
       z-index: 10;
       display: flex;
       justify-content: flex-end;
       position: relative;
+
       li {
         display: flex;
         margin-left: 80px;
+
         @include breakpoint(phone) {
           display: block;
           margin-left: 30px;
         }
+
         @include breakpoint(tablet-lg) {
           margin-left: 80px;
           display: flex;
         }
+
         i {
           margin-right: 27px;
           height: 39px;
@@ -674,19 +774,23 @@ h5 {
           background: var(--color-orange-light);
           justify-content: center;
           align-items: center;
+
           @include breakpoint(phone) {
             margin-bottom: 15px;
           }
+
           @include breakpoint(tablet-lg) {
             margin-bottom: 0;
           }
         }
+
         .data-item__content {
           h4 {
             color: var(--text-primary);
             font-size: 14px;
             margin-bottom: 7px;
           }
+
           p {
             font-size: 12px;
             line-height: 135%;
@@ -695,6 +799,7 @@ h5 {
       }
     }
   }
+
   .page-intro__slide {
     height: 450px;
     position: relative;
@@ -702,9 +807,11 @@ h5 {
     background-position: center;
     background-size: cover;
     background-color: var(--background);
+
     @include breakpoint(phone) {
       height: 90vh;
     }
+
     &:before {
       content: "";
       left: 0;
@@ -714,6 +821,7 @@ h5 {
       position: absolute;
       background-color: rgba(0, 0, 0, 0.2);
     }
+
     .container {
       z-index: 10;
       display: flex;
@@ -721,29 +829,35 @@ h5 {
       align-items: center;
       height: 100%;
     }
+
     .page-intro__slide__content {
       margin-top: auto;
       margin-bottom: 40px;
+
       @include breakpoint(phone) {
         margin-bottom: 80px;
         margin-top: 0;
       }
+
       h2 {
         font-size: 36px;
         color: var(--background);
         font-weight: 600;
         line-height: 120%;
         margin-bottom: 45px;
+
         @include breakpoint(phone) {
           font-size: 64px;
           width: 600px;
         }
       }
+
       .btn-shop {
         cursor: pointer;
         display: flex;
         color: var(--background);
         align-items: center;
+
         i {
           justify-content: center;
           align-items: center;
@@ -763,15 +877,18 @@ h5 {
 
 .featured {
   padding: 35px 0 62px 0;
+
   @include breakpoint(phone) {
     padding: 70px 0 92px 0;
   }
+
   .container {
     @include breakpoint(phone) {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
     }
+
     @include breakpoint(tablet-lg) {
       display: grid;
       grid-gap: 34px;
@@ -779,28 +896,36 @@ h5 {
       grid-template-areas: "\31  \31  \31  \31  \31  \31  \32  \32  \32  \33  \33  \33 ";
     }
   }
+
   .featured-item-large {
     grid-area: \31;
     width: 100%;
   }
+
   .featured-item-small-first {
     grid-area: \32;
+
     @include breakpoint(phone) {
       width: 49%;
     }
+
     @include breakpoint(tablet-lg) {
       width: 100%;
     }
   }
+
   .featured-item-small {
     grid-area: \33;
+
     @include breakpoint(phone) {
       width: 49%;
     }
+
     @include breakpoint(tablet-lg) {
       width: 100%;
     }
   }
+
   .featured-item {
     height: 200px;
     display: flex;
@@ -810,14 +935,17 @@ h5 {
     background-size: cover;
     padding: 21px 22px;
     position: relative;
+
     @include breakpoint(phone) {
       height: 375px;
       padding: 55px 46px;
       margin-bottom: 10px;
     }
+
     @include breakpoint(tablet-lg) {
       margin-bottom: 0;
     }
+
     &:before {
       content: "";
       top: 0;
@@ -828,20 +956,24 @@ h5 {
       position: absolute;
       background: rgba(0, 0, 0, 0.28);
     }
+
     .featured-item__content {
       margin-top: auto;
       position: relative;
       color: var(--text-primary);
       z-index: 2;
+
       a {
         color: var(--text-primary);
       }
+
       h3 {
         font-weight: 400;
         font-size: 20px;
         color: var(--text-primary);
         margin-bottom: 15px;
         line-height: 150%;
+
         @include breakpoint(phone) {
           font-size: 23px;
           margin-bottom: 20px;
@@ -853,6 +985,7 @@ h5 {
 
 .product-item {
   &.product-item--loading {
+
     .product__image,
     .product__description h3,
     .product__price h4 {
@@ -873,8 +1006,10 @@ h5 {
         width: 100%;
       }
     }
+
     .product__image {
       position: relative;
+
       &:before {
         top: 0;
         left: 0;
@@ -883,6 +1018,7 @@ h5 {
         height: 100%;
       }
     }
+
     .product__description {
       h3 {
         &:before {
@@ -892,9 +1028,11 @@ h5 {
         }
       }
     }
+
     .product__price {
       h4 {
         width: 40%;
+
         &:before {
           height: 18px;
           width: 100%;
@@ -902,24 +1040,29 @@ h5 {
       }
     }
   }
+
   .product__image {
     height: 250px;
     background-color: var(--background);
     margin-bottom: 20px;
     position: relative;
+
     @include breakpoint(phone) {
       height: 385px;
       margin-bottom: 30px;
     }
-    > a {
+
+    >a {
       height: 100%;
       width: 100%;
       display: block;
       padding: 18px;
+
       @include breakpoint(phone) {
         padding: 24px;
       }
     }
+
     .btn-heart {
       top: 10px;
       right: 12px;
@@ -932,6 +1075,7 @@ h5 {
       background-color: var(--background);
       position: absolute;
       box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.16);
+
       @include breakpoint(phone) {
         height: 38px;
         width: 38px;
@@ -939,12 +1083,14 @@ h5 {
         right: 19px;
         font-size: 14px;
       }
+
       &:hover,
       &.btn-heart--active {
         color: var(--text-primary);
         background-color: var(--color-orange);
       }
     }
+
     img {
       top: 0;
       left: 0;
@@ -955,6 +1101,7 @@ h5 {
       object-fit: cover;
       position: absolute;
     }
+
     .product__discount {
       color: var(--color-white);
       padding: 5px 9px;
@@ -966,35 +1113,43 @@ h5 {
       background-color: var(--color-red);
     }
   }
+
   .product__description {
     h3 {
       color: var(--text-primary);
       margin-bottom: 9px;
       font-weight: 300;
       font-size: 13px;
+
       @include breakpoint(phone) {
         font-size: 16px;
       }
     }
+
     .product__price {
       display: flex;
+
       h4 {
         color: var(--text-primary);
         font-weight: 400;
         font-size: 15px;
+
         @include breakpoint(phone) {
           font-size: 20px;
         }
       }
+
       span {
         color: #cecece;
         margin-left: 20px;
         font-size: 15px;
+
         @include breakpoint(phone) {
           font-size: 20px;
           margin-left: 29px;
         }
       }
+
       &.product__price--discount {
         h4 {
           color: #ff0000;
@@ -1011,21 +1166,26 @@ h5 {
     margin-bottom: 35px;
     color: var(--text-primary);
     justify-content: space-between;
+
     @include breakpoint(phone) {
       margin-bottom: 65px;
     }
+
     a {
       color: var(--text-primary);
     }
+
     h3 {
       color: var(--text-primary);
       font-weight: 300;
       font-size: 18px;
+
       @include breakpoint(phone) {
         font-size: 29px;
       }
     }
   }
+
   .products-carousel {
     .swiper-container {
       overflow: visible;
@@ -1041,14 +1201,17 @@ h5 {
     background-size: cover;
     position: relative;
     background-position: center;
+
     @include breakpoint(phone) {
       padding: 40px 60px 40px 60px;
     }
+
     @include breakpoint(tablet-lg) {
       padding: 80px 125px 80px 105px;
       display: flex;
       align-items: center;
     }
+
     &:before {
       content: "";
       width: 100%;
@@ -1060,25 +1223,30 @@ h5 {
       position: absolute;
       background-color: rgba(0, 0, 0, 0.4);
     }
+
     * {
       z-index: 10;
       position: relative;
     }
+
     h4 {
       font-size: 18px;
       color: #fff;
       margin-bottom: 20px;
       line-height: 130%;
       margin-right: auto;
+
       @include breakpoint(phone) {
         font-size: 23px;
       }
+
       @include breakpoint(tablet-lg) {
         width: 504px;
         font-size: 26px;
         margin-bottom: 0;
       }
     }
+
     .subscribe__form {
       input {
         width: 100%;
@@ -1089,17 +1257,20 @@ h5 {
         background-color: var(--background);
         border-radius: 30px;
         margin-right: 25px;
+
         @include breakpoint(phone) {
           width: auto;
           height: 48px;
           padding: 0 35px;
         }
       }
+
       .btn {
         margin-top: 10px;
         font-size: 11px;
         padding-top: 10px;
         padding-bottom: 10px;
+
         @include breakpoint(phone) {
           padding: 15px 25px;
           font-size: 13px;
@@ -1112,19 +1283,24 @@ h5 {
 
 .section {
   margin-bottom: 70px;
+
   @include breakpoint(phone) {
     margin-bottom: 150px;
   }
+
   .section__intro {
     margin-bottom: 36px;
+
     @include breakpoint(phone) {
       margin-bottom: 93px;
     }
+
     h4 {
       color: var(--text-primary);
       font-size: 23px;
       font-weight: 300;
       text-align: center;
+
       @include breakpoint(phone) {
         font-size: 29px;
       }
@@ -1134,30 +1310,38 @@ h5 {
 
 .site-footer {
   padding-top: 50px;
+
   @include breakpoint(phone) {
     padding-top: 90px;
   }
+
   .site-footer__top {
     gap: 8px;
+
     @include breakpoint(phone) {
       display: flex;
       flex-wrap: wrap;
       padding-bottom: 60px;
     }
+
     @include breakpoint(tablet-lg) {
       flex-wrap: nowrap;
     }
   }
+
   .site-footer__description {
     margin-right: auto;
     margin-bottom: 70px;
+
     @include breakpoint(phone) {
       width: 400px;
       margin-bottom: 50px;
     }
+
     @include breakpoint(tablet-lg) {
       margin-bottom: 0;
     }
+
     svg {
       object-fit: contain;
       width: 45px;
@@ -1165,64 +1349,80 @@ h5 {
       fill: var(--text-primary);
       margin-right: 15px;
     }
+
     h6 {
       display: flex;
       color: var(--text-primary);
       font-weight: 300;
       align-items: center;
       margin-bottom: 33px;
+
       span {
         font-weight: 400;
         color: var(--color-orange);
       }
     }
+
     p {
       font-size: 13px;
       line-height: 190%;
     }
   }
+
   .site-footer__social-networks {
     display: flex;
     margin-top: 20px;
+
     li {
       font-size: 21px;
       margin-right: 25px;
     }
   }
+
   .site-footer__links {
     @include breakpoint(phone) {
       display: flex;
       width: 100%;
     }
+
     @include breakpoint(tablet-lg) {
       width: auto;
     }
+
     ul {
       margin-bottom: 40px;
+
       @include breakpoint(phone) {
         margin-right: 50px;
         margin-bottom: 0;
       }
+
       @include breakpoint(tablet-lg) {
         margin-right: 99px;
       }
+
       &:last-of-type {
         margin-right: 0;
       }
+
       li {
         font-size: 14px;
         color: var(--text-primary);
         margin-bottom: 12px;
+
         @include breakpoint(phone) {
           margin-bottom: 15px;
         }
+
         &:first-child {
           font-weight: 600;
           margin-bottom: 26px;
+
           @include breakpoint(phone) {
             margin-bottom: 34px;
           }
         }
+
         a {
           &:hover {
             text-decoration: underline;
@@ -1231,15 +1431,19 @@ h5 {
       }
     }
   }
+
   .site-footer__bottom {
     padding: 20px 0;
     border-top: 1px solid var(--border-primary);
+
     @include breakpoint(phone) {
       padding: 33px 0;
     }
+
     .container {
       font-size: 11px;
       text-align: center;
+
       @include breakpoint(phone) {
         font-size: 16px;
       }
@@ -1252,14 +1456,17 @@ h5 {
     display: flex;
     justify-content: space-between;
   }
+
   li {
     text-align: center;
     margin-bottom: 50px;
+
     @include breakpoint(phone) {
       width: 22%;
       margin-bottom: 0;
       text-align: left;
     }
+
     i {
       height: 70px;
       width: 70px;
@@ -1275,22 +1482,26 @@ h5 {
       margin-bottom: 28px;
       margin-left: auto;
       margin-right: auto;
+
       @include breakpoint(phone) {
         margin-bottom: 43px;
         margin-left: 0;
         margin-right: 0;
       }
     }
+
     .data-item__content {
       h4 {
         color: var(--text-primary);
         margin-bottom: 20px;
       }
+
       p {
         font-size: 13px;
         line-height: 150%;
       }
     }
+
     &:hover {
       i {
         color: var(--color-orange);
@@ -1303,6 +1514,7 @@ h5 {
 .checkbox-color-wrapper {
   display: flex;
   position: relative;
+
   .checkbox-color {
     width: calc(100% / 6);
   }
@@ -1315,6 +1527,7 @@ h5 {
   color: var(--background);
   margin-bottom: 18px;
   align-items: center;
+
   .checkbox__check {
     display: block;
     width: 100%;
@@ -1323,6 +1536,7 @@ h5 {
     border-top: 1px solid #d4d4d4;
     border-bottom: 1px solid #d4d4d4;
     border-right: 1px solid #d4d4d4;
+
     .checkbox__color {
       position: absolute;
       top: 8px;
@@ -1331,18 +1545,21 @@ h5 {
       bottom: 8px;
     }
   }
+
   &:first-of-type {
     .checkbox__check {
       border-left: 1px solid #d4d4d4;
     }
   }
+
   input {
     height: 0;
     width: 0;
     display: none;
     overflow: hidden;
   }
-  input:checked + .checkbox__check {
+
+  input:checked+.checkbox__check {
     background-color: var(--background);
   }
 }
@@ -1354,6 +1571,7 @@ h5 {
       align-items: flex-start;
     }
   }
+
   .products-filter {
     .btn-submit {
       display: block;
@@ -1362,10 +1580,12 @@ h5 {
       width: 150px;
       margin-top: 20px;
       margin-bottom: 30px;
+
       @include breakpoint(phone) {
         display: none;
       }
     }
+
     .products-filter__wrapper {
       width: 300px;
       left: -300px;
@@ -1378,9 +1598,11 @@ h5 {
       padding: 20px 20px;
       background-color: var(--background);
       transition: all 0.4s ease;
+
       @include breakpoint(phone) {
         top: 134px;
       }
+
       @include breakpoint(tablet-lg) {
         position: relative;
         left: 0;
@@ -1390,15 +1612,18 @@ h5 {
         margin-right: 20px;
         width: 220px;
       }
+
       @include breakpoint(desktop-lg) {
         width: 310px;
         top: 0;
         margin-right: 30px;
       }
+
       &.products-filter__wrapper--open {
         left: 0;
       }
     }
+
     .products-filter__menu-btn {
       position: fixed;
       top: 65px;
@@ -1410,31 +1635,38 @@ h5 {
       font-size: 12px;
       background-color: var(--background);
       border-bottom: 1px solid var(--border-primary);
+
       @include breakpoint(phone) {
         top: 100px;
       }
+
       @include breakpoint(tablet-lg) {
         display: none;
       }
+
       i {
         display: inline-block;
         transition: all 0.3s ease;
         transform: rotate(270deg);
       }
+
       &.products-filter__menu-btn--active {
         i {
           transform: rotate(90deg);
         }
       }
     }
+
     .products-filter__block {
       padding: 20px 21px;
       margin-bottom: 13px;
       border: 1px solid var(--border-primary);
+
       @include breakpoint(tablet-lg) {
         padding: 24px 31px;
       }
-      > button {
+
+      >button {
         color: var(--text-primary);
         font-size: 12px;
         display: flex;
@@ -1442,56 +1674,69 @@ h5 {
         font-weight: 600;
         width: 100%;
         text-transform: uppercase;
+
         i {
           font-size: 21px;
           margin-left: auto;
         }
       }
     }
+
     .rc-slider {
       .rc-slider-handle {
         height: 20px;
         width: 20px;
         margin-top: -7px;
         border-color: var(--text-primary);
+
         &.rc-slider-handle-dragging {
           box-shadow: none;
         }
       }
+
       .rc-slider-track {
         background: var(--slider-track);
       }
     }
+
     .products-filter__block__content {
       padding-top: 25px;
     }
   }
+
   .products-content {
     width: 100%;
+
     .products-content__intro {
       display: flex;
       position: relative;
       align-items: center;
       margin-bottom: 35px;
       flex-wrap: wrap;
+
       h2 {
         font-size: 18px;
         margin-right: auto;
         font-weight: 300;
         color: var(--text-primary);
+
         @include breakpoint(phone) {
           font-size: 24px;
         }
+
         span {
           color: var(--text-primary);
         }
       }
+
       .products-filter-btn {
         font-size: 16px;
+
         @include breakpoint(phone) {
           display: none;
         }
       }
+
       .products-content__filter {
         position: absolute;
         width: 290px;
@@ -1503,9 +1748,11 @@ h5 {
         color: var(--text-primary);
         border: 1px solid var(--border-primary);
         background-color: var(--background);
+
         &.products-order-open {
           display: block;
         }
+
         @include breakpoint(phone) {
           display: flex;
           width: 100%;
@@ -1514,42 +1761,53 @@ h5 {
           position: static;
           margin-top: 30px;
         }
+
         @include breakpoint(tablet-lg) {
           width: auto;
           margin-top: 0;
         }
+
         .products__filter__select {
           color: var(--text-primary);
           display: flex;
           align-items: center;
           margin-bottom: 20px;
+
           &:last-of-type {
             margin-bottom: 0;
           }
+
           &:first-of-type {
             margin-left: 0;
           }
+
           @include breakpoint(phone) {
             margin-left: 42px;
             margin-bottom: 0;
           }
+
           h4 {
             color: var(--text-primary);
             font-size: 13px;
+
             @include breakpoint(phone) {
               font-size: 16px;
             }
           }
+
           .select-wrapper {
             color: var(--text-primary);
             margin-left: auto;
+
             @include breakpoint(phone) {
               margin-left: 15px;
             }
+
             select {
               color: var(--text-primary);
               font-size: 13px;
               padding: 6px 25px 6px 8px;
+
               @include breakpoint(phone) {
                 color: var(--text-primary);
                 padding: 9px 38px 9px 12px;
@@ -1570,6 +1828,7 @@ h5 {
   color: var(--text-primary);
   margin-bottom: 18px;
   align-items: center;
+
   .checkbox__check {
     display: block;
     width: 26px;
@@ -1578,6 +1837,7 @@ h5 {
     position: relative;
     margin-right: 18px;
     border: 1px solid var(--border-primary);
+
     &:before {
       display: block;
       content: "";
@@ -1596,33 +1856,41 @@ h5 {
       border-width: 0 2px 2px 0;
     }
   }
-  input:checked + .checkbox__check {
+
+  input:checked+.checkbox__check {
     &:before {
       opacity: 1;
     }
   }
+
   &.checkbox--square {
     position: relative;
     width: calc(100% / 6);
-    input:checked + .checkbox__check {
+
+    input:checked+.checkbox__check {
       background-color: var(--text-primary);
       border-color: var(--text-primary);
+
       &:before {
         opacity: 0;
       }
     }
-    input:checked ~ p {
+
+    input:checked~p {
       color: var(--text-primary);
     }
+
     input {
       display: none;
     }
+
     p {
       position: absolute;
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
     }
+
     .checkbox__check {
       display: block;
       width: 100%;
@@ -1633,6 +1901,7 @@ h5 {
       border-top: 1px solid var(--border-primary);
       border-bottom: 1px solid var(--border-primary);
       border-right: 1px solid var(--border-primary);
+
       .checkbox__color {
         position: absolute;
         top: 8px;
@@ -1641,6 +1910,7 @@ h5 {
         bottom: 8px;
       }
     }
+
     &:first-of-type {
       .checkbox__check {
         border-left: 1px solid var(--border-primary);
@@ -1651,32 +1921,36 @@ h5 {
 
 .checkbox-square-wrapper {
   display: flex;
-  .checkbox {
-  }
+
+  .checkbox {}
 }
 
-.checkbox-wrapper {
-}
+.checkbox-wrapper {}
 
 .products-list {
   display: flex;
   flex-wrap: wrap;
   margin-right: -15px;
+
   @include breakpoint(phone) {
     margin-right: -33px;
   }
+
   @include breakpoint(tablet-lg) {
     margin-right: -63px;
   }
+
   .product-item {
     width: calc(100% / 2 - 15px);
     margin-bottom: 50px;
     margin-right: 15px;
+
     @include breakpoint(phone) {
       margin-right: 33px;
       margin-bottom: 55px;
       width: calc(100% / 3 - 33px);
     }
+
     @include breakpoint(tablet-lg) {
       margin-right: 63px;
       margin-bottom: 85px;
@@ -1687,6 +1961,7 @@ h5 {
 
 .select-wrapper {
   position: relative;
+
   &:before {
     right: 15px;
     font-family: "icons";
@@ -1698,18 +1973,21 @@ h5 {
     font-size: 16px;
     transform: translateY(-50%);
   }
+
   select {
     color: var(--text-primary);
     font-size: 15px;
     padding: 9px 38px 9px 12px;
     border: 1px solid var(--border-primary);
     border-radius: 50px;
+
     option {
       background-color: var(--background);
       color: var(--text-primary);
       font-size: 15px;
     }
   }
+
   &.select-form {
     select {
       width: 100%;
@@ -1720,6 +1998,7 @@ h5 {
 .quantity-buttons {
   display: flex;
   align-items: center;
+
   .btn {
     margin: 0 17px;
   }
@@ -1732,14 +2011,17 @@ h5 {
   display: inline-flex;
   align-items: center;
   border: 1px solid var(--border-primary);
+
   @include breakpoint(phone) {
     height: 49px;
   }
+
   .quantity-button__btn {
     color: var(--text-primary);
     font-size: 23px;
     font-weight: 400;
   }
+
   span {
     font-size: 18px;
     color: var(--text-primary);
@@ -1759,6 +2041,7 @@ h5 {
   border: 1px solid #d8d8d8;
   color: var(--text-primary);
   background-color: var(--background);
+
   &:hover,
   &.btn-heart--active {
     color: #fff;
@@ -1774,107 +2057,132 @@ h5 {
 
 .product-single {
   margin-bottom: 70px;
+
   @include breakpoint(phone) {
     margin-bottom: 170px;
   }
+
   .product-single__description {
     max-width: 938px;
     margin: 0 auto;
     flex-wrap: wrap;
+
     @include breakpoint(phone) {
       display: flex;
       justify-content: space-between;
     }
+
     .product-description-block {
       text-align: center;
       width: 100%;
       margin-bottom: 60px;
+
       @include breakpoint(phone) {
         width: 48%;
         margin-bottom: 0;
       }
+
       i {
         color: var(--text-primary);
         display: block;
         font-size: 30px;
         margin-bottom: 30px;
+
         @include breakpoint(phone) {
           font-size: 38px;
           margin-bottom: 48px;
         }
       }
+
       h4 {
         color: var(--text-primary);
         font-weight: 700;
         font-size: 15px;
         margin-bottom: 25px;
+
         @include breakpoint(phone) {
           margin-bottom: 35px;
           font-size: 16px;
         }
       }
+
       p {
         color: var(--text-primary);
         font-size: 13px;
         line-height: 145%;
         text-align: left;
+
         @include breakpoint(phone) {
           font-size: 14px;
         }
       }
     }
   }
+
   .product-single__content {
     margin-bottom: 50px;
+
     @include breakpoint(phone) {
       display: flex;
       align-items: flex-start;
       margin-bottom: 100px;
     }
   }
+
   .product-gallery {
     @include breakpoint(phone) {
       margin-right: 110px;
     }
+
     .product-gallery__thumbs {
       height: 300px;
+
       @include breakpoint(phone) {
         height: 491px;
       }
     }
+
     .product-gallery__thumb {
       @include breakpoint(phone) {
         height: calc(100% / 5 - 15px);
       }
     }
   }
+
   .product-content {
     flex: 1;
   }
+
   .product-single__reviews {
     display: flex;
     align-items: flex-start;
     flex-wrap: wrap;
+
     .reviews-list {
       width: 100%;
       margin-left: auto;
+
       @include breakpoint(tablet-lg) {
         width: 48%;
       }
     }
   }
+
   .product-single__info {
     .product-single__info-btns {
       display: flex;
       justify-content: center;
       margin-bottom: 90px;
+
       .btn {
         margin: 0 15px;
         padding: 8px 22px;
         color: var(--text-primary);
+
         @include breakpoint(phone) {
           padding: 12px 28px;
         }
+
         &.btn--active {
           border: 1px solid var(--color-orange);
         }
@@ -1885,26 +2193,33 @@ h5 {
 
 .product-content {
   position: relative;
+
   .product-content__intro {
     margin-bottom: 40px;
+
     @include breakpoint(phone) {
       margin-bottom: 60px;
     }
   }
+
   .product-filter-item {
     margin-bottom: 38px;
+
     &:last-of-type {
       margin-bottom: 0;
     }
+
     h5 {
       color: var(--text-primary);
       font-weight: 300;
       font-size: 13px;
       margin-bottom: 19px;
+
       strong {
         font-weight: 700;
       }
     }
+
     .checkbox-color-wrapper {
       .checkbox-color {
         color: var(--text-primary);
@@ -1912,16 +2227,19 @@ h5 {
         height: 30px;
         margin-right: 8px;
         border: none;
+
         @include breakpoint(phone) {
           color: var(--text-primary);
           width: 43px;
           height: 43px;
           margin-right: 13px;
         }
+
         .checkbox__check {
           color: var(--text-primary);
           border: 1px solid #d4d4d4;
         }
+
         .checkbox__color {
           color: var(--text-primary);
 
@@ -1929,6 +2247,7 @@ h5 {
           left: 4px;
           right: 4px;
           bottom: 4px;
+
           @include breakpoint(phone) {
             top: 8px;
             left: 8px;
@@ -1939,26 +2258,32 @@ h5 {
       }
     }
   }
+
   .product__prices {
     display: flex;
+
     h4 {
       font-weight: 400;
       color: #ff0000;
       font-size: 18px;
+
       @include breakpoint(phone) {
         font-size: 30px;
       }
     }
+
     span {
       margin-left: 30px;
       font-weight: 400;
       font-size: 18px;
       color: #cecece;
+
       @include breakpoint(phone) {
         font-size: 30px;
       }
     }
   }
+
   .product__id {
     top: -10px;
     right: 0;
@@ -1968,16 +2293,19 @@ h5 {
     font-size: 12px;
     position: absolute;
   }
+
   .product__name {
     font-size: 20px;
     font-weight: 300;
     color: var(--text-primary);
     margin-bottom: 9px;
+
     @include breakpoint(phone) {
       font-size: 30px;
       margin-bottom: 15px;
     }
   }
+
   .product-on-sale {
     background-color: #ff0000;
     color: #fff;
@@ -1988,6 +2316,7 @@ h5 {
     border-radius: 40px;
     margin-bottom: 15px;
     display: inline-block;
+
     @include breakpoint(phone) {
       font-size: 12px;
       margin-bottom: 25px;
@@ -1998,21 +2327,26 @@ h5 {
 .product-gallery {
   display: flex;
   margin-bottom: 40px;
+
   @include breakpoint(phone) {
     margin-bottom: 0;
   }
+
   .product-gallery__thumbs {
     display: none;
+
     @include breakpoint(phone) {
       width: 97px;
       display: block;
       margin-right: 28px;
     }
   }
+
   .product-gallery__thumb {
     width: 100%;
     height: 97px;
     margin-bottom: 15px;
+
     img {
       width: 100%;
       height: 100%;
@@ -2020,13 +2354,16 @@ h5 {
       object-fit: cover;
     }
   }
+
   .product-gallery__image {
     height: 300px;
     width: 100%;
+
     @include breakpoint(phone) {
       width: 476px;
       height: 476px;
     }
+
     img {
       width: 100%;
       height: 100%;
@@ -2038,6 +2375,7 @@ h5 {
 
 .review-item {
   display: flex;
+
   .review__avatar {
     width: 40px;
     margin-right: 27px;
@@ -2045,6 +2383,7 @@ h5 {
     background-color: gray;
     border-radius: 100%;
     height: 40px;
+
     img {
       border-radius: 100%;
       object-fit: cover;
@@ -2052,27 +2391,34 @@ h5 {
       width: 100%;
     }
   }
+
   .review__content {
     flex: 1;
+
     h3 {
       color: var(--text-primary);
       font-size: 13px;
       font-weight: 700;
       margin-bottom: 4px;
     }
+
     .review__comment {
       font-size: 13px;
       line-height: 155%;
     }
+
     .react-rater {
       margin-bottom: 5px;
+
       .react-rater-star {
         margin-right: 4px;
         font-size: 21px;
         line-height: 100%;
+
         &.is-active {
           color: var(--color-orange);
         }
+
         &.is-active-half {
           &:before {
             color: var(--color-orange);
@@ -2086,6 +2432,7 @@ h5 {
 .reviews-list {
   .review-item {
     margin-bottom: 35px;
+
     &:last-of-type {
       margin-bottom: 0;
     }
@@ -2096,35 +2443,44 @@ h5 {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 50px;
+
   @include breakpoint(phone) {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
   }
+
   @include breakpoint(tablet-lg) {
     width: 52%;
   }
+
   .product-punctuation__values {
     text-align: center;
     margin-bottom: 25px;
+
     @include breakpoint(phone) {
       margin-bottom: 0;
     }
+
     h3 {
       color: var(--text-primary);
       font-size: 59px;
       font-weight: 700;
       margin-bottom: 6px;
     }
+
     .react-rater {
       margin-bottom: 9px;
+
       .react-rater-star {
         margin-right: 4px;
         font-size: 23px;
         line-height: 100%;
+
         &.is-active {
           color: var(--color-orange);
         }
+
         &.is-active-half {
           &:before {
             color: var(--color-orange);
@@ -2133,16 +2489,20 @@ h5 {
       }
     }
   }
+
   .product-punctuation__rates {
     width: 200px;
+
     @include breakpoint(phone) {
       margin-left: 68px;
     }
   }
+
   .punctuation-btn-wrapper {
     width: 100%;
     margin-top: 30px;
     text-align: center;
+
     @include breakpoint(phone) {
       margin-top: 50px;
     }
@@ -2153,11 +2513,13 @@ h5 {
   .punctuation-item {
     display: flex;
     align-items: center;
+
     .react-rater {
       .react-rater-star {
         &.is-active {
           color: var(--color-orange);
         }
+
         &.is-active-half {
           &:before {
             color: var(--color-orange);
@@ -2165,11 +2527,13 @@ h5 {
         }
       }
     }
-    > span {
+
+    >span {
       font-size: 12px;
       color: var(--text-primary);
       margin: 0 auto;
     }
+
     .punctuation-item__bar {
       height: 2px;
       width: 142px;
@@ -2177,6 +2541,7 @@ h5 {
       border-radius: 40px;
       position: relative;
       background-color: #dbdbdb;
+
       .punctuation-item__bar__current {
         position: absolute;
         left: 0;
@@ -2193,24 +2558,29 @@ h5 {
 .checkout-steps {
   display: flex;
   align-items: center;
+
   li {
     position: relative;
     padding-right: 60px;
+
     @include breakpoint(phone) {
       padding-right: 105px;
     }
+
     &.active {
       i {
         color: #fff;
         background: var(--color-orange);
       }
     }
+
     &.done {
       i {
         color: var(--color-orange);
         border: 1.3px solid var(--color-orange);
       }
     }
+
     &:before {
       top: 50%;
       right: 15px;
@@ -2222,6 +2592,7 @@ h5 {
       margin-top: -1px;
       position: absolute;
     }
+
     i {
       display: flex;
       width: 36px;
@@ -2231,12 +2602,15 @@ h5 {
       align-items: center;
       color: #d8d8d8;
       font-size: 16px;
+
       &.icon-delivery {
         font-size: 12px;
       }
     }
+
     &:last-of-type {
       padding-right: 0;
+
       &:before {
         content: none;
       }
@@ -2246,67 +2620,83 @@ h5 {
 
 .cart {
   padding: 52px 0;
+
   .cart__intro {
     display: flex;
     align-items: center;
     margin-bottom: 35px;
     justify-content: space-between;
+
     @include breakpoint(phone) {
       margin-bottom: 66px;
     }
   }
+
   .cart__title {
     color: var(--text-primary);
     font-size: 20px;
     font-weight: 700;
     line-height: 140%;
   }
+
   .cart-actions {
     margin-top: 75px;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     color: var(--text-primary);
+
     .btn {
       margin-left: 20px;
     }
+
     .cart-actions__items-wrapper {
       display: flex;
       width: 100%;
       align-items: center;
+
       a {
         color: var(--text-primary);
       }
+
       @include breakpoint(phone) {
         margin-top: 30px;
       }
+
       @include breakpoint(tablet-lg) {
         width: auto;
         margin-top: 0;
       }
     }
+
     &.cart-actions--checkout {
       display: flex;
       flex-direction: column-reverse;
+
       @include breakpoint(phone) {
         flex-direction: row;
       }
+
       .cart-actions__items-wrapper {
         margin-bottom: 30px;
         justify-content: space-between;
+
         @include breakpoint(phone) {
           width: auto;
           justify-content: flex-start;
         }
+
         .btn {
           color: var(--text-primary);
           padding: 9px 13px;
           font-size: 10px;
           margin-left: 0;
+
           @include breakpoint(phone) {
             font-size: 12px;
             padding: 11px 20px;
           }
+
           &:first-of-type {
             margin-right: 10px;
           }
@@ -2314,22 +2704,27 @@ h5 {
       }
     }
   }
+
   .icon-cancel {
     font-size: 13px;
   }
+
   .cart__btn-back {
     font-weight: 700;
     font-size: 14px;
     color: var(--text-primary);
     margin-right: auto;
     margin-bottom: 40px;
+
     @include breakpoint(phone) {
       margin-bottom: 0;
     }
+
     i {
       margin-right: 15px;
     }
   }
+
   .cart__promo-code {
     padding: 0 20px;
     font-size: 13px;
@@ -2339,25 +2734,31 @@ h5 {
     color: var(--text-primary);
     border: 1px solid var(--border-primary);
     border-radius: 30px;
+
     @include breakpoint(phone) {
       height: 49px;
       width: auto;
       margin-bottom: 0;
       margin-right: 0;
     }
+
     @include breakpoint(tablet-lg) {
       margin-right: 70px;
     }
+
     @include placeholder {
       color: var(--border-primary);
     }
   }
+
   .cart-actions__total {
     font-weight: 300;
     margin-right: auto;
+
     @include breakpoint(tablet-lg) {
       margin-right: 60px;
     }
+
     strong {
       margin-left: 15px;
       color: var(--text-primary);
@@ -2368,9 +2769,11 @@ h5 {
 
 .cart-list {
   width: 100%;
+
   table {
     width: 100%;
   }
+
   tr {
     display: flex;
     align-items: center;
@@ -2379,85 +2782,105 @@ h5 {
     padding-bottom: 18px;
     margin-bottom: 18px;
     border-bottom: 1px solid #d8d8d8;
+
     @include breakpoint(phone) {
       display: table-row;
       padding: 0;
       margin: 0;
       border: none;
     }
+
     &:last-of-type {
       border-bottom: none;
     }
+
     &:first-of-type {
       display: none;
+
       @include breakpoint(phone) {
         display: table-row;
       }
     }
+
     th {
       text-align: center;
       font-size: 14px;
       color: #c1c1c1;
       padding-bottom: 30px;
     }
+
     td {
       display: block;
       flex-wrap: wrap;
       padding: 10px 0;
       color: var(--text-primary);
+
       @include breakpointMax(phone) {
         width: 100% !important;
       }
+
       @include breakpoint(phone) {
         display: table-cell;
         vertical-align: middle;
         text-align: center;
         padding: 20px 0;
       }
+
       &.cart-item-before {
         &:before {
           font-weight: 600;
           margin-right: 15px;
           content: attr(data-label) ": ";
+
           @include breakpoint(phone) {
             display: none;
           }
         }
       }
+
       &:nth-of-type(1) {
         width: 30%;
       }
+
       &:nth-of-type(2) {
         width: 12%;
       }
+
       &:nth-of-type(3) {
         width: 12%;
       }
+
       &:nth-of-type(4) {
         width: 50% !important;
         text-align: right;
+
         @include breakpoint(phone) {
           text-align: center;
           width: 23% !important;
         }
       }
+
       &:nth-of-type(5) {
         text-align: left;
         padding-left: 15px;
         width: 50% !important;
+
         @include breakpoint(phone) {
           text-align: center;
           width: 23% !important;
         }
       }
+
       &.cart-item-cancel {
         top: 5px;
         right: 0;
         width: auto !important;
         position: absolute;
+
         @include breakpoint(phone) {
           position: static;
         }
+
         i {
           cursor: pointer;
         }
@@ -2469,15 +2892,18 @@ h5 {
 .cart-product {
   display: flex;
   align-items: center;
+
   .cart-product__img {
     height: 70px;
     width: 70px;
     background: #fafafa;
     border-radius: 100%;
     margin-right: 25px;
+
     @include breakpoint(phone) {
       margin-right: 48px;
     }
+
     img {
       width: 100%;
       height: 100%;
@@ -2486,18 +2912,22 @@ h5 {
       object-position: top center;
     }
   }
+
   .cart-product__content {
     padding-right: 25px;
     text-align: left;
+
     @include breakpoint(phone) {
       padding: 0;
     }
+
     h3 {
       color: var(--text-primary);
       font-size: 16px;
       font-weight: 700;
       margin-bottom: 10px;
     }
+
     p {
       font-size: 13px;
       font-weight: 300;
@@ -2512,6 +2942,7 @@ h5 {
 
 .btn-cart {
   position: relative;
+
   .btn-cart__count {
     bottom: 0;
     right: 0;
@@ -2532,21 +2963,47 @@ h5 {
 .back-button-section {
   padding: 30px 0;
   margin-bottom: 30px;
+
   @include breakpoint(phone) {
-    margin-bottom: 50px;
-    padding: 50px 0;
+    margin-bottom: 0px;
+    padding: 50px 0 0;
+    position: relative;
   }
+
   a {
-    color: var(--text-primary);
+    // color: var(--text-primary);
+    color: white;
     font-size: 13px;
     font-weight: 600;
+
     @include breakpoint(phone) {
       font-size: 14px;
     }
+
     i {
       margin-right: 24px;
     }
   }
+}
+
+.bg-video {
+  background-color: rgba(0, 0, 0, .6);
+  width: 100%;
+  height: 100%;
+  left: 0;
+  // top: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.video-css {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  // top: 0;
+  position: absolute;
+  pointer-events: none;
 }
 
 .form-page {
@@ -2556,11 +3013,15 @@ h5 {
 .form-block {
   width: 100%;
   margin: 0 auto;
+
   @include breakpoint(phone) {
     width: 448px;
+    position: relative;
   }
+
   .form-block__title {
-    color: var(--text-primary);
+    // color: var(--text-primary);
+    color: white;
     font-size: 22px;
     font-weight: 600;
     padding: 0 50px;
@@ -2568,27 +3029,39 @@ h5 {
     text-align: center;
     margin-bottom: 24px;
   }
+
   .form-block__description {
     font-size: 14px;
     line-height: 165%;
     text-align: center;
   }
+
   .form {
-    margin-top: 40px;
+    // margin-top: 40px;
   }
 }
 
 .form {
   .form__input-row {
     margin-bottom: 15px;
+
     &.form__input-row--two {
       display: flex;
       justify-content: space-between;
+
       .form__col {
         width: 49%;
       }
     }
+
   }
+
+  .form_register {
+    input {
+      background: white;
+    }
+  }
+
   .form__input {
     height: 47px;
     width: 100%;
@@ -2597,28 +3070,35 @@ h5 {
     padding: 0 22px;
     border-radius: 40px;
     border: 1px solid #d8d8d8;
+
     @include breakpoint(phone) {
-      height: 56px;
-      padding: 0 40px;
+      // height: 56px;
+      // padding: 0 40px;
     }
+
     &.form__input--sm {
       height: 49px;
       padding: 0 28px;
     }
   }
+
   .select-wrapper {
     height: 100%;
+
     &:before {
       right: 25px;
     }
+
     select {
       height: 100%;
       font-size: 13px;
       color: #808080;
       padding: 0 28px;
+
       option {
         color: #808080;
         font-size: 15px;
+
         &:first-of-type {
           opacity: 0.8;
           display: none;
@@ -2626,13 +3106,16 @@ h5 {
       }
     }
   }
+
   .form__btns {
     justify-content: space-between;
     display: flex;
+
     .btn-social {
       width: 48%;
     }
   }
+
   .btn-submit {
     margin-top: 20px;
     width: 100%;
@@ -2641,46 +3124,57 @@ h5 {
     font-weight: 600;
     text-transform: none;
     color: var(--text-primary);
+
     @include breakpoint(phone) {
-      padding-top: 19px;
+      // padding-top: 19px;
       padding-bottom: 19px;
     }
   }
+
   .form__signup-link {
     margin-top: 22px;
     font-size: 14px;
     color: var(--text-primary);
     padding-bottom: 2px;
     text-align: center;
+
     a {
       margin-left: 30px;
       font-weight: 600;
+
       &:hover {
         text-decoration: underline;
       }
     }
   }
+
   .form__info {
     margin-bottom: 22px;
+
     @include breakpoint(phone) {
       display: flex;
       margin-bottom: 32px;
       align-items: center;
       justify-content: space-between;
     }
+
     .form__info__forgot-password {
       margin-top: 24px;
       text-align: center;
       display: block;
+
       @include breakpoint(phone) {
         margin-top: 0px;
       }
     }
+
     .checkbox {
       margin-bottom: 0;
+
       .checkbox__check {
         height: 20px;
         width: 20px;
+
         &:before {
           top: 2px;
           left: 6px;
@@ -2688,11 +3182,13 @@ h5 {
           height: 10.5px;
         }
       }
+
       p {
         font-size: 13px;
         line-height: 130%;
       }
     }
+
     a {
       font-size: 14px;
     }
@@ -2707,9 +3203,11 @@ h5 {
   display: flex;
   align-items: center;
   background-color: #3b5998;
+
   @include breakpoint(phone) {
     padding: 14px 58px;
   }
+
   i {
     font-size: 18px;
     margin-right: 8px;
@@ -2724,9 +3222,11 @@ h5 {
   border-radius: 40px;
   border: 1px solid #f1584d;
   padding: 12px 30px;
+
   @include breakpoint(phone) {
     padding: 14px 58px;
   }
+
   img {
     margin-right: 10px;
   }
@@ -2740,6 +3240,7 @@ h5 {
   border-radius: 6px;
   padding: 10px 15px;
   position: fixed;
+
   &:before {
     width: 0;
     height: 0;
@@ -2760,23 +3261,28 @@ h5 {
   text-align: center;
   padding: 60px 0;
   min-height: calc(100vh - 200px);
+
   h1 {
     font-size: 44px;
     margin: 0 auto 20px auto;
     text-align: center;
+
     @include breakpoint(phone) {
       font-size: 92px;
     }
   }
+
   p {
     line-height: 160%;
     font-size: 15px;
     margin-bottom: 40px;
+
     @include breakpoint(phone) {
       font-size: 17px;
       margin-bottom: 50px;
     }
   }
+
   .btn {
     margin: 0 auto;
   }
@@ -2786,46 +3292,59 @@ h5 {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+
   .block {
     margin-bottom: 48px;
+
     &:last-of-type {
       margin-bottom: 0;
     }
   }
+
   .checkout__btns {
     margin-bottom: 38px;
+
     .btn {
       color: var(--text-primary);
       width: 125px;
       margin-right: 11px;
     }
   }
+
   .checkout__col-6 {
     width: 100%;
+
     @include breakpoint(tablet-lg) {
       width: 53%;
     }
+
     @include breakpoint(desktop-lg) {
       width: 41%;
     }
   }
+
   .checkout__col-4 {
     width: 100%;
     margin-top: 30px;
+
     @include breakpoint(tablet-lg) {
       width: 41%;
       margin-top: 0;
     }
+
     @include breakpoint(desktop-lg) {
       width: 25%;
     }
   }
+
   .checkout__col-2 {
     width: 100%;
     margin-top: 30px;
+
     @include breakpoint(tablet-lg) {
       width: 300px;
     }
+
     @include breakpoint(desktop-lg) {
       width: 22%;
       margin-top: 0;
@@ -2836,25 +3355,32 @@ h5 {
 .round-options {
   display: flex;
   flex-wrap: wrap;
+
   &.round-options--three {
     margin-right: -6px;
+
     .round-item {
       background-color: var(--background-item);
       margin-right: 6px;
       width: calc(100% / 3 - 6px);
     }
   }
+
   &.round-options--two {
     margin-right: -6px;
+
     .round-item {
       background-color: var(--background-item);
+
       p {
         color: var(--text-primary);
       }
+
       margin-right: 6px;
       width: calc(100% / 2 - 6px);
     }
   }
+
   .round-item {
     display: flex;
     height: 44px;
@@ -2864,15 +3390,18 @@ h5 {
     border-radius: 20px;
     align-items: center;
     justify-content: center;
+
     img {
       max-height: 80%;
       max-width: 80%;
     }
+
     p {
       font-weight: bold;
       color: black;
       font-size: 14px;
     }
+
     &.round-item--bg {
       height: 51px;
       align-items: center;
@@ -2886,16 +3415,20 @@ h5 {
   h3 {
     color: var(--text-secondary);
   }
+
   .checkout-item {
     display: flex;
     align-items: center;
     margin-bottom: 23px;
     justify-content: space-between;
+
     .checkout-item__content {
       display: flex;
       align-items: center;
+
       .checkout-item__data {
         width: 110px;
+
         h3 {
           color: var(--text-primary);
           font-weight: 600;
@@ -2903,17 +3436,20 @@ h5 {
           line-height: 140%;
           margin-bottom: 7px;
         }
+
         span {
           color: #c4c4c4;
           font-size: 12px;
         }
       }
+
       .checkout-item__img {
         width: 51px;
         height: 51px;
         flex-shrink: 0;
         margin-right: 16px;
         border-radius: 100%;
+
         img {
           border-radius: 100%;
           object-fit: cover;
@@ -2936,11 +3472,13 @@ h5 {
   gap: 10px;
   margin: 34px auto 0 auto;
   justify-content: space-between;
+
   p {
     flex-shrink: 0;
     color: var(--text-secondary);
     font-weight: 300;
   }
+
   h3 {
     flex-shrink: 1;
     color: var(--text-secondary);
@@ -2953,6 +3491,7 @@ h5 {
   align-items: center;
   margin-top: 10px;
   margin-left: 20px;
+
   &:before {
     content: "";
     height: 4px;
@@ -2961,8 +3500,10 @@ h5 {
     display: block;
     margin-right: 5px;
   }
+
   &.message--error {
     color: red;
+
     &:before {
       background-color: red;
     }

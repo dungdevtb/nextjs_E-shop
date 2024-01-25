@@ -17,6 +17,7 @@
   ],
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",
+    "antd": "^5.13.2",
     "lodash": "^4.17.21",
     "next": "latest",
     "next-redux-wrapper": "^6.0.2",

@@ -3,7 +3,8 @@ import { some } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleFavProduct } from 'store/reducers/user';
 import { RootState } from 'store';
-import { ProductTypeList } from 'types';
+import { ProductTypeList, Product } from 'types';
+
 
 const ProductItem = ({ discount, images, id, name, price, currentPrice }: ProductTypeList) => {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const ProductItem = ({ discount, images, id, name, price, currentPrice }: Produc
 
   const toggleFav = () => {
     dispatch(toggleFavProduct(
-      { 
+      {
         id,
       }
     ))
@@ -27,20 +28,20 @@ const ProductItem = ({ discount, images, id, name, price, currentPrice }: Produc
         <Link href={`/product/${id}`}>
 
           <img src={images ? images[0] : ''} alt="product" />
-          {discount && 
+          {discount &&
             <span className="product__discount">{discount}%</span>
           }
 
         </Link>
       </div>
-      
+
       <div className="product__description">
         <h3>{name}</h3>
         <div className={"product__price " + (discount ? 'product__price--discount' : '')} >
-          <h4>${ currentPrice }</h4>
+          <h4>${currentPrice}</h4>
 
-          {discount &&  
-            <span>${ price }</span>
+          {discount &&
+            <span>${price}</span>
           }
         </div>
       </div>
