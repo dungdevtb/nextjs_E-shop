@@ -1128,6 +1128,7 @@ h5 {
 
     .product__price {
       display: flex;
+      justify-content: space-between;
 
       h4 {
         color: var(--text-primary);
@@ -1140,19 +1141,18 @@ h5 {
       }
 
       span {
-        color: #cecece;
-        margin-left: 20px;
+        color: #ff0000;
         font-size: 15px;
 
         @include breakpoint(phone) {
           font-size: 20px;
-          margin-left: 29px;
         }
       }
 
       &.product__price--discount {
         h4 {
-          color: #ff0000;
+          color: #cecece;
+          font-size: 16px;
         }
       }
     }
@@ -3193,6 +3193,23 @@ h5 {
       font-size: 14px;
     }
   }
+}
+
+.number-with-line {
+  position: relative;
+}
+
+.number-with-line::after {
+  content: "";
+  position: absolute;
+  bottom: 50%;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid #cecece;
+}
+
+.card-color .ant-card-body {
+  padding: 12px;
 }
 
 .fb-btn {

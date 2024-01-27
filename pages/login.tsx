@@ -3,11 +3,14 @@ import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { server } from "../utils/server";
 import { postData } from "../utils/services";
+import { fetchApi } from "./api/fetchAPI.js";
+import { useRouter } from "next/router";
+
 
 type FormValues = {
   email: string;
   password: string;
-  keepSigned?: boolean;
+  // keepSigned?: boolean;
 };
 
 const LoginPage = () => {
@@ -17,14 +20,24 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    console.log(data);
-    const res = await postData(`${server}/api/login`, {
-      email: data.email,
-      password: data.password,
-    });
+  const router = useRouter();
 
-    console.log(res);
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    // const res = await postData(`${server}/api/login`, {
+    //   email: data.email,
+    //   password: data.password,
+    // });
+
+    const response = await fetchApi('/api/customer/login', 'post', data)
+
+    if (response.statusCode !== 200) {
+      return response?.message || 'ERORR';
+    }
+    const token = response?.data?.token || null;
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(response?.data?.user));
+
+    router.push('/')
   };
 
   return (
@@ -38,18 +51,18 @@ const LoginPage = () => {
           </div>
 
           <div className="form-block">
-            <h2 className="form-block__title">Log in</h2>
-            <p className="form-block__description">
+            <h2 className="form-block__title" style={{ color: 'black' }}>Log in</h2>
+            {/* <p className="form-block__description">
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy text
               ever since the 1500s
-            </p>
+            </p> */}
 
             <form className="form" onSubmit={handleSubmit(onSubmit as any)}>
               <div className="form__input-row">
                 <input
                   className="form__input"
-                  placeholder="email"
+                  placeholder="Email"
                   type="text"
                   {...register("email", {
                     required: true,
@@ -86,7 +99,7 @@ const LoginPage = () => {
               </div>
 
               <div className="form__info">
-                <div className="checkbox-wrapper">
+                {/* <div className="checkbox-wrapper">
                   <label
                     htmlFor="check-signed-in"
                     className={`checkbox checkbox--sm`}
@@ -99,7 +112,7 @@ const LoginPage = () => {
                     <span className="checkbox__check"></span>
                     <p>Keep me signed in</p>
                   </label>
-                </div>
+                </div> */}
                 <a
                   href="/forgot-password"
                   className="form__info__forgot-password"
