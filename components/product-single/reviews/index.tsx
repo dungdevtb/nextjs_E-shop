@@ -7,22 +7,22 @@ type ReviewsProductType = {
   product: ProductType
 }
 
-const Reviews = ({ show, product }: ReviewsProductType) => {
+const Reviews = ({ show, product }: any) => {
   const style = {
     display: show ? 'flex' : 'none',
   }
 
   return (
     <section style={style} className="product-single__reviews">
-      <Punctuation 
-        punctuation={product.punctuation.punctuation}
-        countOpinions={product.punctuation.countOpinions}
-        votes={product.punctuation.votes} 
+      <Punctuation
+        punctuation={product?.comments.length}
+        countOpinions={2}
+        votes={[{ count: 1, value: 1 }, { count: 2, value: 2 }]}
+        reviews={product?.comments}
       />
-      <ReviewsList reviews={product.reviews} />
+      <ReviewsList reviews={product?.comments} />
     </section>
   );
 };
-  
+
 export default Reviews;
-    

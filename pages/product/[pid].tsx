@@ -1,4 +1,3 @@
-import { GetServerSideProps } from 'next'
 import { useState } from 'react';
 import Footer from '../../components/footer';
 import Layout from '../../layouts/Main';
@@ -10,7 +9,6 @@ import Description from '../../components/product-single/description';
 import Reviews from '../../components/product-single/reviews';
 import { server } from '../../utils/server';
 import useSwr from 'swr';
-import { ProductType } from 'types';
 import { useParams } from 'next/navigation';
 
 interface Color {
@@ -25,23 +23,7 @@ interface UniqueColor {
   image: string;
 }
 
-type ProductPageType = {
-  product: ProductType;
-}
-
-// export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-//   const pid = query.pid;
-//   const res = await fetch(`${server}/api/product/${pid}`);
-//   const product = await res.json();
-
-//   return {
-//     props: {
-//       product,
-//     },
-//   }
-// }
-
-const Product = ({ product }: ProductPageType) => {
+const Product = () => {
   const [showBlock, setShowBlock] = useState('description');
   const params = useParams();
 
@@ -57,6 +39,8 @@ const Product = ({ product }: ProductPageType) => {
   });
   const uniColor: UniqueColor[] = Object.values(uniqueProducts);
 
+  const lengthReview = data?.data?.comments?.length
+
   return (
     <Layout>
       <Breadcrumb />
@@ -65,17 +49,17 @@ const Product = ({ product }: ProductPageType) => {
         <div className="container">
           <div className="product-single__content">
             <Gallery images={uniColor} />
-            {/* <Content product={data?.data} colors={uniColor} /> */}
+            <Content product={data?.data} colors={uniColor} />
           </div>
 
           <div className="product-single__info">
             <div className="product-single__info-btns">
               <button type="button" onClick={() => setShowBlock('description')} className={`btn btn--rounded ${showBlock === 'description' ? 'btn--active' : ''}`}>Description</button>
-              <button type="button" onClick={() => setShowBlock('reviews')} className={`btn btn--rounded ${showBlock === 'reviews' ? 'btn--active' : ''}`}>Reviews (2)</button>
+              <button type="button" onClick={() => setShowBlock('reviews')} className={`btn btn--rounded ${showBlock === 'reviews' ? 'btn--active' : ''}`}>Reviews ({lengthReview})</button>
             </div>
 
             <Description show={showBlock === 'description'} />
-            {/* <Reviews product={product} show={showBlock === 'reviews'} /> */}
+            <Reviews product={data?.data} show={showBlock === 'reviews'} />
           </div>
         </div>
       </section>

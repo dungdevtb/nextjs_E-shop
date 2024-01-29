@@ -6,20 +6,22 @@ type ReviewsListType = {
   reviews: ReviewType[];
 }
 
-const ReviewsList = ({ reviews }: ReviewsListType) => {
+const ReviewsList = ({ reviews }: any) => {
+
+  console.log(reviews);
 
   return (
     <section className="reviews-list">
-      {reviews.map((review, index) => (
+      {reviews?.length > 0 && reviews.map((comment: any, index: number) => (
         <div key={index} className="review-item">
           <div className="review__avatar">
-            <img src={ review.avatar } alt="avatar" />
+            <img src={comment?.customer?.avatar} alt="A" />
           </div>
-          
+
           <div className="review__content">
-            <h3>{ review.name }</h3>
-            <Rater total={5} interactive={false} rating={review.punctuation} />
-            <div className="review__comment" dangerouslySetInnerHTML={createMarkup(review.description)}>
+            <h3>{comment?.customer?.name}</h3>
+            <Rater total={5} interactive={false} rating={comment?.rating} />
+            <div className="review__comment" dangerouslySetInnerHTML={createMarkup(comment?.comment_text)}>
             </div>
           </div>
         </div>
@@ -27,6 +29,5 @@ const ReviewsList = ({ reviews }: ReviewsListType) => {
     </section>
   );
 };
-  
+
 export default ReviewsList;
-    

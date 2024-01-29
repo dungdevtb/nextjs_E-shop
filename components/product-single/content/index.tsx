@@ -1,34 +1,40 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import productsColors from './../../../utils/data/products-colors';
 import productsSizes from './../../../utils/data/products-sizes';
-// import CheckboxColor from './../../products-filter/form-builder/checkbox-color';
-import { useDispatch, useSelector } from 'react-redux';
+import CheckboxColor from './../../products-filter/form-builder/checkbox-color';
 import { some } from 'lodash';
 import { addProduct } from 'store/reducers/cart';
 import { toggleFavProduct } from 'store/reducers/user';
 import { ProductType, ProductStoreType } from 'types';
 import { RootState } from 'store';
 import { formatMoney } from 'pages/common';
+import CardColor from './../../products-filter/form-builder/checkbox-color/card-color';
 
-import { Card } from 'antd';
-
-const { Meta } = Card;
 
 // type ProductContent = {
 //   product: ProductType;
 // }
 
 const Content = ({ product, colors }: any) => {
-
-  // console.log(product);
   const [count, setCount] = useState<number>(1);
+  const [activeIndex, setActiveIndex] = useState<number>();
+  const [colorArr, setColorArr] = useState<any>([]);
 
   const dispatch = useDispatch();
-  // const [color, setColor] = useState<string>('');
-  // const [itemSize, setItemSize] = useState<string>('');
+  const [color, setColor] = useState<string>('');
+  const [itemSize, setItemSize] = useState<number>(0);
 
-  // const onColorSet = (e: string) => setColor(e);
-  // const onSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => setItemSize(e.target.value);
+  useEffect(() => {
+    if (colors.length > 0)
+      setColorArr(colors);
+  }, [colors])
+
+  const onSelectChange = (e: any) => {
+    const size = product?.sizes.find((item: any) => item.id === Number(e.target.value))
+    setItemSize(size)
+    setColorArr(size?.size_color)
+  }
 
   // const { favProducts } = useSelector((state: RootState) => state.user);
   // const isFavourite = some(favProducts, productId => productId === product?.id);
@@ -60,18 +66,21 @@ const Content = ({ product, colors }: any) => {
   //   dispatch(addProduct(productStore));
   // }
 
-  const CardColor = ({ color }: any) => {
-    return (
-      <Card
-        hoverable
-        style={{ width: 100, marginRight: 10 }}
-        cover={<img alt="example" src={color?.image} />}
-        className='card-color'
-      >
-        <Meta title={color?.name} />
-      </Card>
-    )
+  const handleClickColor = (item: any, index: number) => {
+    setColor(item);
+    setActiveIndex(index);
   }
+
+  const decrement = () => {
+    if (count > 0) {
+      setCount(prevCount => prevCount - 1);
+    }
+  };
+
+  const increment = () => {
+    setCount(prevCount => prevCount + 1);
+  }
+
 
   return (
     <section className="product-content">
@@ -86,9 +95,27 @@ const Content = ({ product, colors }: any) => {
             <span className='number-with-line'>{formatMoney(product?.sell_price) + ' đ'}</span>
           }
         </div>
+
+        <div className="product__des">
+          <p>{product?.description}</p>
+        </div>
       </div>
 
       <div className="product-content__filters">
+        <div className="product-filter-item">
+          <h5>Size: <strong>See size table</strong></h5>
+          <div className="checkbox-color-wrapper">
+            <div className="select-wrapper">
+              <select onChange={onSelectChange}>
+                <option>Choose size</option>
+                {product?.sizes.map((item: any) => (
+                  <option value={item.id}>{item.size}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
+
         <div className="product-filter-item">
           <h5>Color:</h5>
           <div className="checkbox-color-wrapper">
@@ -102,33 +129,28 @@ const Content = ({ product, colors }: any) => {
                 onChange={onColorSet}
               />
             ))} */}
-            {/* {colors?.length > 0 && colors.map((color: any) => (
-              <CardColor key={color.name} color={color} />
-            ))} */}
+
+            {colorArr.length > 0 && colorArr?.map((item: any, index: number) => (
+              <CardColor
+                key={index}
+                color={item?.image || item?.color?.image}
+                name={item?.name || item?.color?.name}
+                onClick={() => handleClickColor(item, index)}
+                isActive={activeIndex === index}
+              />
+            ))}
           </div>
         </div>
+
         <div className="product-filter-item">
-          <h5>Size: <strong>See size table</strong></h5>
-          <div className="checkbox-color-wrapper">
-            <div className="select-wrapper">
-              {/* <select onChange={onSelectChange}>
-                <option>Choose size</option>
-                {productsSizes.map(type => (
-                  <option value={type.label}>{type.label}</option>
-                ))}
-              </select> */}
-            </div>
-          </div>
-        </div>
-        <div className="product-filter-item">
-          <h5>Quantity:</h5>
+          <h5>Quantity: {product?.quantity}</h5>
           <div className="quantity-buttons">
             <div className="quantity-button">
-              <button type="button" onClick={() => setCount(count - 1)} className="quantity-button__btn">
+              <button type="button" onClick={decrement} className="quantity-button__btn">
                 -
               </button>
               <span>{count}</span>
-              <button type="button" onClick={() => setCount(count + 1)} className="quantity-button__btn">
+              <button type="button" onClick={increment} className="quantity-button__btn">
                 +
               </button>
             </div>
@@ -139,7 +161,7 @@ const Content = ({ product, colors }: any) => {
           </div>
         </div>
       </div>
-    </section>
+    </section >
   );
 };
 

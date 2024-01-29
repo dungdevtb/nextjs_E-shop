@@ -2197,13 +2197,13 @@ h5 {
   .product-content__intro {
     margin-bottom: 40px;
 
-    @include breakpoint(phone) {
-      margin-bottom: 60px;
-    }
+    // @include breakpoint(phone) {
+    //   margin-bottom: 60px;
+    // }
   }
 
   .product-filter-item {
-    margin-bottom: 38px;
+    margin-bottom: 20px;
 
     &:last-of-type {
       margin-bottom: 0;
@@ -2282,6 +2282,12 @@ h5 {
         font-size: 30px;
       }
     }
+  }
+
+  .product__des {
+    margin-top: 20px;
+    font-size: 16px;
+    font-family: cursive;
   }
 
   .product__id {
@@ -3208,8 +3214,59 @@ h5 {
   border-bottom: 1px solid #cecece;
 }
 
-.card-color .ant-card-body {
-  padding: 12px;
+.card-color {
+  padding: 5px;
+  border: 1px solid;
+  margin-right: 10px;
+  border-radius: 4px;
+  position: relative;
+
+  img {
+    width: 50px;
+    height: 50px;
+    margin-right: 5px;
+  }
+
+  span {
+    font-size: 12px;
+    color: #000;
+  }
+}
+
+.active {
+  border: 1px solid #cb2d2d;
+
+  span {
+    color: #cb2d2d;
+  }
+
+  i {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    border-radius: 4px;
+    height: 10px;
+    border-top: 20px solid #cb2d2d;
+    border-right: 20px solid transparent;
+    width: 0;
+
+    svg {
+      height: 8px;
+      position: relative;
+      top: -23px;
+      left: -2px;
+      color: #fff;
+    }
+  }
+}
+
+.card-color:hover {
+  cursor: pointer;
+  border: 1px solid #cb2d2d;
+
+  span {
+    color: #cb2d2d;
+  }
 }
 
 .fb-btn {
