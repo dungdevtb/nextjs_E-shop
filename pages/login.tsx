@@ -5,7 +5,7 @@ import { server } from "../utils/server";
 import { postData } from "../utils/services";
 import { fetchApi } from "./api/fetchAPI.js";
 import { useRouter } from "next/router";
-
+import { actionLogin } from "./common";
 
 type FormValues = {
   email: string;
@@ -28,15 +28,7 @@ const LoginPage = () => {
     //   password: data.password,
     // });
 
-    const response = await fetchApi('/api/customer/login', 'post', data)
-
-    if (response.statusCode !== 200) {
-      return response?.message || 'ERORR';
-    }
-    const token = response?.data?.token || null;
-    localStorage.setItem('token', token);
-    localStorage.setItem('user', JSON.stringify(response?.data?.user));
-
+    await actionLogin(data)
     router.push('/')
   };
 
@@ -52,12 +44,6 @@ const LoginPage = () => {
 
           <div className="form-block">
             <h2 className="form-block__title" style={{ color: 'black' }}>Log in</h2>
-            {/* <p className="form-block__description">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s
-            </p> */}
-
             <form className="form" onSubmit={handleSubmit(onSubmit as any)}>
               <div className="form__input-row">
                 <input

@@ -16,8 +16,8 @@ const Reviews = ({ show, product }: any) => {
     <section style={style} className="product-single__reviews">
       <Punctuation
         punctuation={product?.comments.length}
-        countOpinions={2}
-        votes={[{ count: 1, value: 1 }, { count: 2, value: 2 }]}
+        countOpinions={product?.comments.length}
+        votes={[{ count: 3, value: 5 }, { count: 2, value: 4 }]}
         reviews={product?.comments}
       />
       <ReviewsList reviews={product?.comments} />

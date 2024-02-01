@@ -24,7 +24,7 @@ interface UniqueColor {
 }
 
 const Product = () => {
-  const [showBlock, setShowBlock] = useState('description');
+  const [showBlock, setShowBlock] = useState('reviews');
   const params = useParams();
 
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
@@ -43,7 +43,7 @@ const Product = () => {
 
   return (
     <Layout>
-      <Breadcrumb />
+      <Breadcrumb product={data?.data} />
 
       <section className="product-single">
         <div className="container">

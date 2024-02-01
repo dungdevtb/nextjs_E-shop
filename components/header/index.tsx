@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { RootState } from "store";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import { ThemeContext } from "components/context/theme-context";
+import { actionGetDetailCart } from "pages/common";
 
 type HeaderType = {
   isErrorPage?: Boolean;
@@ -24,9 +25,10 @@ const Header = ({ isErrorPage }: HeaderType) => {
   const [searchOpen, setSearchOpen] = useState(false);
   const navRef = useRef(null);
   const searchRef = useRef(null);
-
   const { theme, toggleTheme } = useContext(ThemeContext);
+  const [haveToken, setHaveToken] = useState(false)
 
+  const [dataCart, setDataCart] = useState<any>([]);
   const headerClass = () => {
     if (window.pageYOffset === 0) {
       setOnTop(true);
@@ -34,6 +36,14 @@ const Header = ({ isErrorPage }: HeaderType) => {
       setOnTop(false);
     }
   };
+
+  useEffect(() => {
+    (async () => {
+      await actionGetDetailCart({}).then((res) => {
+        setDataCart(res)
+      })
+    })()
+  }, [])
 
   useEffect(() => {
     if (!arrayPaths.includes(router.pathname) || isErrorPage) {
@@ -45,6 +55,12 @@ const Header = ({ isErrorPage }: HeaderType) => {
       headerClass();
     };
   }, []);
+
+  useEffect(() => {
+    if (localStorage?.getItem("token")) {
+      setHaveToken(true)
+    }
+  }, [])
 
   const closeMenu = () => {
     setMenuOpen(false);
@@ -58,22 +74,35 @@ const Header = ({ isErrorPage }: HeaderType) => {
   useOnClickOutside(navRef, closeMenu);
   useOnClickOutside(searchRef, closeSearch);
 
+
+  const handleClickLogout = () => {
+    try {
+      if (window.confirm('Are you sure, you want to logout?')) {
+        localStorage.removeItem('token')
+        localStorage.removeItem('user')
+        window.location.assign('/login')
+      }
+    } catch (error: any) {
+      alert("Logout failed!")
+    }
+  }
+
   return (
     <header className={`site-header ${!onTop ? "site-header--fixed" : ""}`}>
       <div className="container">
-        <Link href="/">
+        <a onClick={() => router.push('/')}>
           <h1 className="site-logo">
             <Logo />
             E-Shop
           </h1>
-        </Link>
+        </a>
         <nav
           ref={navRef}
           className={`site-nav ${menuOpen ? "site-nav--open" : ""}`}
         >
-          <Link href="/products">Products</Link>
-          <a href="#">Inspiration</a>
-          <a href="#">Rooms</a>
+          <a onClick={() => router.push('/products')}>Product</a>
+          <a onClick={() => router.push('/news')}>News</a>
+          <a onClick={() => router.push('/rooms')}>Rooms</a>
           <button className="site-nav__btn">
             <p>Account</p>
           </button>
@@ -82,9 +111,8 @@ const Header = ({ isErrorPage }: HeaderType) => {
         <div className="site-header__actions">
           <button
             ref={searchRef}
-            className={`search-form-wrapper ${
-              searchOpen ? "search-form--active" : ""
-            }`}
+            className={`search-form-wrapper ${searchOpen ? "search-form--active" : ""
+              }`}
           >
             <form className={`search-form`}>
               <i
@@ -110,19 +138,42 @@ const Header = ({ isErrorPage }: HeaderType) => {
             sunColor={!onTop ? "black" : "white"}
             size={24}
           />
-          <Link href="/cart" legacyBehavior>
+          {/* <Link href="/cart" legacyBehavior> */}
+          <a onClick={() => router.push('/cart')}>
             <button className="btn-cart">
               <i className="icon-cart"></i>
-              {cartItems.length > 0 && (
-                <span className="btn-cart__count">{cartItems.length}</span>
+              {dataCart?.cart_product?.length > 0 && (
+                <span className="btn-cart__count">{dataCart?.cart_product?.length}</span>
               )}
             </button>
-          </Link>
-          <Link href="/login" legacyBehavior>
+          </a>
+          {/* </Link> */}
+          {/* <Link href="/login" legacyBehavior>
             <button className="site-header__btn-avatar">
               <i className="icon-avatar"></i>
             </button>
-          </Link>
+          </Link> */}
+
+          {haveToken ?
+            <div className="dropdown" style={{ float: 'right' }}>
+              <button className="site-header__btn-avatar dropbtn">
+                <i className="icon-avatar"></i>
+              </button>
+              <div className="dropdown-content">
+                <a onClick={handleClickLogout}>Logout</a>
+              </div>
+            </div>
+            :
+            <div className="dropdown" style={{ float: 'right' }}>
+              <button className="site-header__btn-avatar dropbtn">
+                <i className="icon-avatar"></i>
+              </button>
+              <div className="dropdown-content">
+                <a onClick={() => router.push('/login')}>Login</a>
+                <a onClick={() => router.push('/register')}>Register</a>
+              </div>
+            </div>
+          }
           <button
             onClick={() => setMenuOpen(true)}
             className="site-header__btn-menu"

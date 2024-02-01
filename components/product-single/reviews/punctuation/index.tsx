@@ -6,8 +6,6 @@ const Punctuation = ({ votes, punctuation, countOpinions, reviews }: any) => {
     return (count * 100) / countOpinions;
   }
 
-  console.log(reviews);
-
 
   return (
     <section className="product-punctuation">

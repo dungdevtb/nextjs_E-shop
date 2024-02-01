@@ -8,8 +8,6 @@ type ReviewsListType = {
 
 const ReviewsList = ({ reviews }: any) => {
 
-  console.log(reviews);
-
   return (
     <section className="reviews-list">
       {reviews?.length > 0 && reviews.map((comment: any, index: number) => (
