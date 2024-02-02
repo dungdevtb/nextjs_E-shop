@@ -2,7 +2,12 @@ import CheckoutStatus from '../../components/checkout-status';
 import Item from './item';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { actionGetDetailCart } from 'pages/common';
+import {
+  actionGetDetailCart,
+  actionUpdateAddress,
+  actionGetDetailUser,
+  actionCreateNewOrder
+} from 'pages/common';
 import { formatMoney } from 'pages/common';
 
 const ShoppingCart = () => {
@@ -10,8 +15,33 @@ const ShoppingCart = () => {
   const router = useRouter();
   const [orderProducts, setOrderProducts] = useState<any>([]);
   const [selectAll, setSelectAll] = useState<boolean>(false);
-  const [openCheckout, setOpenCheckout] = useState<boolean>(false);
   const [infoUser, setInfoUser] = useState<any>(null)
+  const [activeIndex, setActiveIndex] = useState<number>();
+  const [activeDeli, setActiveDeli] = useState<any>(null);
+
+  const paymentMethod = [
+    {
+      value: 0,
+      name: 'Payment on delivery'
+    },
+    {
+      value: 1,
+      name: 'Payment online'
+    }
+  ]
+
+  const deliveryMethod = [
+    {
+      value: 0,
+      name: 'Regular shipping',
+      price: 20000
+    },
+    {
+      value: 1,
+      name: 'Express shipping',
+      price: 50000
+    }
+  ]
 
   useEffect(() => {
     (async () => {
@@ -19,7 +49,10 @@ const ShoppingCart = () => {
         setDataCart(res)
       })
 
-      setInfoUser(JSON.parse(localStorage.getItem('user') || '{}'))
+      const idUser = JSON.parse(localStorage.getItem('user') || '{}').id
+      await actionGetDetailUser({ id: idUser }).then((user) => {
+        setInfoUser(user)
+      })
     })()
   }, [])
 
@@ -89,13 +122,45 @@ const ShoppingCart = () => {
       });
     }
 
+    if (activeDeli?.price > 0 && totalPrice > 0) {
+      totalPrice += activeDeli?.price
+    }
+
     return totalPrice;
   }
 
-  console.log(infoUser);
+  const handleUpdateAddress = async () => {
+    await actionUpdateAddress({
+      id: infoUser?.id,
+      address: infoUser?.address,
+      mobile: infoUser?.mobile
+    })
+  }
 
   const handleOrderNow = async () => {
+    let newOrderProducts = orderProducts.map((item: any) => {
+      return {
+        product_id: item?.product_id,
+        size_id: item?.size_id,
+        color_id: item?.color_id,
+        quantity: item?.quantity
+      }
+    })
 
+    let dataPayload = {
+      payment_type: activeIndex,
+      delivery_type: activeDeli?.value,
+      note: '',
+      fee_delivery: activeDeli?.price,
+      total: priceTotal(),
+      customer_id: infoUser?.id,
+      order_product: newOrderProducts
+    }
+
+    if (infoUser?.address !== null && infoUser?.address.trim() !== '') {
+      console.log(dataPayload);
+      // await actionCreateNewOrder(dataPayload)
+    }
   }
 
   return (
@@ -153,9 +218,9 @@ const ShoppingCart = () => {
               {(infoUser && infoUser?.id) &&
                 <form className="form">
                   <div className="form__input-row form__input-row--two">
-                    <div className="form__col">
+                    {/* <div className="form__col">
                       <img src={infoUser?.avatar} alt="" style={{ width: '100px', }} />
-                    </div>
+                    </div> */}
                   </div>
                   <div className="form__input-row form__input-row--two">
                     <div className="form__col">
@@ -197,7 +262,7 @@ const ShoppingCart = () => {
                         onChange={handleChangeInfo}
                         value={infoUser?.address}
                       />
-                      {infoUser?.address == null && infoUser?.address == "" && (
+                      {infoUser?.address == null || infoUser?.address.trim() == "" && (
                         <p className="message message--error">
                           Please enter your shipping address
                         </p>
@@ -206,7 +271,7 @@ const ShoppingCart = () => {
                   </div>
                   <div className="form__input-row">
                     <div className="form__col">
-                      <button className="btn btn--rounded btn--yellow">Update</button>
+                      <button className="btn btn--rounded btn--yellow" onClick={handleUpdateAddress}>Update</button>
                     </div>
                   </div>
                 </form>
@@ -214,39 +279,53 @@ const ShoppingCart = () => {
             </div>
           </div>
 
-          <div className="checkout__col-6" style={{ marginTop: '150px' }}>
+          <div className="checkout__col-6" >
             <div className="block">
               <h3 className="block__title">Payment method</h3>
               <ul className="round-options round-options--three">
-                <li className="round-item">Payment on delivery</li>
-                <li className="round-item">Payment online</li>
+                {paymentMethod.map((item: any, index: number) => (
+                  <li
+                    className={`round-item ${activeIndex === index ? 'active' : ''}`}
+                    key={item.value}
+                    value={item.value}
+                    onClick={() => setActiveIndex(index)}
+                  >
+                    {item.name}
+                  </li>
+                ))}
               </ul>
             </div>
 
             <div className="block">
               <h3 className="block__title">Delivery method</h3>
               <ul className="round-options round-options--two">
-                <li className="round-item round-item--bg">
-                  Regular shipping
-                  <p>20.000 đ</p>
-                </li>
-                <li className="round-item round-item--bg">
-                  Express shipping
-                  <p>50.000 đ</p>
-                </li>
-
+                {deliveryMethod.map((item: any, index: number) => (
+                  <li
+                    className={`round-item round-item--bg ${activeDeli?.value === index ? 'active' : ''}`}
+                    value={item.value}
+                    key={item.value}
+                    onClick={() => setActiveDeli(item)}
+                  >
+                    <span>{item.name}</span>
+                    <p>{formatMoney(item.price) + ' đ'}</p>
+                  </li>
+                ))}
               </ul>
+            </div>
+
+            <div className="block">
+              <h3 className="block__title">Add voucher code</h3>
+              <input type="text" placeholder="Voucher Code" className="cart__promo-code" />
             </div>
           </div>
         </div>
 
         <div className="cart-actions">
           <a onClick={() => router.push('/products')} className="cart__btn-back"><i className="icon-left"></i> Continue Shopping</a>
-          <input type="text" placeholder="Voucher Code" className="cart__promo-code" />
-
           <div className="cart-actions__items-wrapper">
             <p className="cart-actions__total">Total cost <strong>{formatMoney(priceTotal().toFixed(2)) + ' VND'} </strong></p>
-            <a onClick={() => router.push('/cart/checkout')} className="btn btn--rounded btn--yellow">Buy now</a>
+            <a onClick={handleOrderNow} className="btn btn--rounded btn--yellow">Buy now</a>
+            {/* <a onClick={() => router.push('/cart/checkout')} className="btn btn--rounded btn--yellow">Buy now</a> */}
           </div>
         </div>
       </div>

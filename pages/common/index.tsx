@@ -1,5 +1,10 @@
 import { fetchApi } from "pages/api/fetchAPI"
 
+export const formatMoney = (num: any) => {
+    if (!num || num === "") return "0"
+    return Number(num).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+}
+
 export const actionLogin = async (payload: any) => {
     const response = await fetchApi({
         url: '/api/customer/login',
@@ -49,7 +54,6 @@ export const actionAddToCart = async (payload: any) => {
 }
 
 export const actionRemoveFromCart = async (payload: any) => {
-    const user = await JSON.parse(localStorage.getItem('user') || '{}')
     const token = localStorage.getItem('token')
 
     let data = {
@@ -63,7 +67,41 @@ export const actionRemoveFromCart = async (payload: any) => {
     return data.data
 }
 
-export const formatMoney = (num: any) => {
-    if (!num || num === "") return "0"
-    return Number(num).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+export const actionUpdateAddress = async (payload: any) => {
+    const token = localStorage.getItem('token')
+    let data = {
+        statusCode: 0,
+        data: {}
+    }
+    if (typeof token === 'string') {
+        data = await fetchApi({ url: '/api/customer/update-addess', method: 'post', body: payload, headers: { token: token } })
+    }
+
+    return data.data
+}
+
+export const actionGetDetailUser = async (payload: any) => {
+    const token = localStorage.getItem('token')
+    let data = {
+        statusCode: 0,
+        data: {}
+    }
+    if (typeof token === 'string') {
+        data = await fetchApi({ url: `/api/customer/get-detail-customer?id=${payload.id}`, method: 'get', body: {}, headers: { token: token } })
+    }
+
+    return data.data
+}
+
+export const actionCreateNewOrder = async (payload: any) => {
+    const token = localStorage.getItem('token')
+    let data = {
+        statusCode: 0,
+        data: {}
+    }
+    if (typeof token === 'string') {
+        data = await fetchApi({ url: '/api/order/new-order', method: 'post', body: payload, headers: { token: token } })
+    }
+
+    return data.data
 }
