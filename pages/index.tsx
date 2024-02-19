@@ -3,14 +3,33 @@ import PageIntro from "../components/page-intro";
 import ProductsFeatured from "../components/products-featured";
 import Footer from "../components/footer";
 import Subscribe from "../components/subscribe";
+// import useSwr from 'swr';
 
 const IndexPage = () => {
+  // const fetcher = (url: string) => fetch(url).then((res) => res.json());
+  // const { data, error } = useSwr(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/api/banner/get-list-banner?type=2`, fetcher)
+
   return (
     <Layout>
       <PageIntro />
 
       <section className="featured">
         <div className="container">
+          {/* {data?.data?.rows.length > 0 ? data?.data?.rows.map((item: any) => {
+            return (
+              <article
+                style={{ backgroundImage: `url(${item?.image})` }}
+                className="featured-item featured-item-large"
+              >
+                <div className="featured-item__content">
+                  <h3>{item?.title}</h3>
+                  <a href="#" className="btn btn--rounded">
+                    {item?.description}
+                  </a>
+                </div>
+              </article>
+            )
+          }) : <></>} */}
           <article
             style={{ backgroundImage: "url(/images/featured-1.jpg)" }}
             className="featured-item featured-item-large"

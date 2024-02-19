@@ -1,13 +1,36 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { EffectFade, Navigation } from "swiper";
+import useSwr from 'swr';
 
 SwiperCore.use([EffectFade, Navigation]);
 
 const PageIntro = () => {
+  const fetcher = (url: string) => fetch(url).then((res) => res.json());
+  const { data, error } = useSwr(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/api/banner/get-list-banner?type=1`, fetcher)
+
   return (
     <section className="page-intro">
       <Swiper navigation effect="fade" className="swiper-wrapper">
-        <SwiperSlide>
+        {data?.data?.rows.length > 0 ? data?.data?.rows.map((item: any) => {
+          return (
+            <SwiperSlide>
+              <div
+                className="page-intro__slide"
+                style={{ backgroundImage: `url(${item?.image})` }}
+              >
+                <div className="container">
+                  <div className="page-intro__slide__content">
+                    <h2>{item?.title}</h2>
+                    <a href="/products" className="btn-shop">
+                      <i className="icon-right"></i>{item?.description}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+          )
+        }) : <></>}
+        {/* <SwiperSlide>
           <div
             className="page-intro__slide"
             style={{ backgroundImage: "url('/images/slide-1.jpg')" }}
@@ -37,7 +60,7 @@ const PageIntro = () => {
               </div>
             </div>
           </div>
-        </SwiperSlide>
+        </SwiperSlide> */}
       </Swiper>
 
       <div className="shop-data">

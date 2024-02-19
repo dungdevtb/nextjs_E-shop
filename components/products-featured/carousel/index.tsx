@@ -9,7 +9,7 @@ type ProductsCarouselType = {
   products: ProductTypeList[];
 };
 
-const ProductsCarousel = ({ products }: ProductsCarouselType) => {
+const ProductsCarousel = ({ products }: any) => {
   const [slidesPerView, setSlidesPerView] = useState(2);
   const [centeredSlides, setCenteredSlides] = useState(false);
   const [spaceBetween, setSpaceBetween] = useState(30);
@@ -49,18 +49,9 @@ const ProductsCarousel = ({ products }: ProductsCarouselType) => {
         slidesPerView={slidesPerView}
         className="swiper-wrapper"
       >
-        {products.map((item) => (
+        {products.map((item: any) => (
           <SwiperSlide key={item.id}>
-            <ProductItem
-              id={item.id}
-              name={item.name}
-              price={item.price}
-              color={item.color}
-              discount={item.discount}
-              currentPrice={item.currentPrice}
-              key={item.id}
-              images={item.images}
-            />
+            <ProductItem record={item} />
           </SwiperSlide>
         ))}
       </Swiper>
