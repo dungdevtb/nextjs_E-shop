@@ -1,7 +1,11 @@
+import { useState } from 'react';
 import Rater from 'react-rater';
-import { PunctuationType } from 'types';
+// import { PunctuationType } from 'types';
 
 const Punctuation = ({ votes, punctuation, countOpinions, reviews }: any) => {
+  const [show, setShow] = useState<any>(false);
+
+
   const percentageBar = (count: number) => {
     return (count * 100) / countOpinions;
   }
@@ -29,9 +33,9 @@ const Punctuation = ({ votes, punctuation, countOpinions, reviews }: any) => {
         </ul>
       </div>
 
-      <div className="punctuation-btn-wrapper">
+      {/* <div className="punctuation-btn-wrapper">
         <button type="button" className="btn btn--rounded btn--yellow">Add comment</button>
-      </div>
+      </div> */}
     </section>
   );
 };

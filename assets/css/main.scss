@@ -609,6 +609,117 @@ h5 {
       }
     }
   }
+
+  .comment-form-wrapper {
+    &.comment-form--active {
+
+      a,
+      i {
+        color: var(--text-primary);
+      }
+
+      .comment-form {
+        top: 0;
+
+        @include breakpoint(tablet-lg) {
+          top: auto;
+        }
+
+        input {
+          @include breakpoint(tablet-lg) {
+            border: 1px solid #ababab;
+          }
+        }
+      }
+    }
+  }
+}
+
+.comment-form-wrapper {
+  position: relative;
+  z-index: 5000;
+
+  .comment-form {
+    position: fixed;
+    z-index: 100;
+    top: -100vh;
+    left: 0;
+    height: 100vh;
+    right: 0;
+    transition: all 0.3s ease;
+    background-color: var(--background);
+
+    @include breakpoint(tablet-lg) {
+      position: static;
+      height: auto;
+      top: auto;
+    }
+
+    .icon-cancel {
+      top: 18px;
+      right: 22px;
+      cursor: pointer;
+      position: absolute;
+
+      @include breakpoint(tablet-lg) {
+        display: none;
+      }
+    }
+
+    input {
+      padding: 0;
+      overflow: hidden;
+      height: 42px;
+      color: #808080;
+      font-size: 13px;
+      position: absolute;
+      top: 50%;
+      right: 50%;
+      transform: translate(-50%, -50%);
+      border-bottom: 1px solid black;
+      transition: all 0.3s ease;
+      background-color: transparent;
+
+      @include inputPlaceholder {
+        color: #808080;
+      }
+
+      @include breakpoint(tablet-lg) {
+        width: 0;
+        top: 50%;
+        right: auto;
+        left: -9px;
+        border: none;
+        border-radius: 50px;
+        margin-top: -21px;
+        transform: none;
+      }
+    }
+  }
+
+  &.comment-form--active {
+
+    a,
+    i {
+      color: var(--text-primary) !important;
+      z-index: 10;
+    }
+
+    input {
+      color: var(--text-primary);
+      padding: 0 8px;
+      width: 80%;
+      text-align: center;
+      padding-right: 40px;
+      background-color: var(--background);
+
+      @include breakpoint(tablet-lg) {
+        width: 300px;
+        padding: 0 19px;
+        text-align: left;
+      }
+    }
+  }
 }
 
 .search-form-wrapper {
